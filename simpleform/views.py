@@ -1,8 +1,13 @@
 from django.http import HttpResponse
+from .models import Album
 
 
 def index(request):
-    return HttpResponse("<h1>This will be list of all albums</h1>")
+    all_albums = Album.objects.all()
+    html = ""
+    for album in all_albums:
+        url = '/music/' + str(album.id) + '/'
+    return HttpResponse(html)
 
 
 def detail(request, album_id):
